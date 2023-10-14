@@ -112,7 +112,7 @@ linux_auth_pam_remove_profiles_mkhomedir:
 linux_auth_pam_add_profiles_ldap:
   cmd.run:
     - name: /usr/local/bin/pam-add-profile {{ pam_modules_enable }}
-    - unless: "[[ `debconf-get-selections | grep libpam-runtime/profiles | grep -c ldap` -ne 0 ]]"
+    - unless: "debconf-get-selections | grep libpam-runtime/profiles | grep ldap"
     - require:
       - file: linux_auth_pam_add_profile
       - pkg: linux_auth_ldap_packages
